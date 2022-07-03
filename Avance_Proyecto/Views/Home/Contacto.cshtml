@@ -1,0 +1,256 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm d-flex bg-white ">
+        <div class="container-fluid d-flex">
+            <div class="collapse navbar-collapse d-flex justify-content-center">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="Home" asp-action="Index">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="Home" asp-action="QuienesSomos">¿Quienes somos?</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Home" asp-action="Contacto">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Home" asp-action="IniciarSesion">Iniciar Sesion</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="contenedor">
+            <h1>Deja tu informacion, y te contactaremos</h1>
+            <form id="formulario">
+                <div class="form-group">
+                    <label for="nombres">Nombres</label>
+                    <div class="input-formulario">
+                        <input type="text" name="nombres" class="form-control formulario__input" id="nombres" aria-describedby="emailHelp" placeholder="Ingresa tus nombres">
+                        <i class="fa-solid fa-circle-check check" id="check__nombres"></i>
+                    </div>
+                    <span class="span__alert" id="span-alert-nombres">El campo debe tener de 4 a 16 digitos, y solo tener letras, numeros y guión bajo</span>
+                </div>
+                <div class="form-group">
+                    <label for="email">Apellidos</label>
+                    <div class="input-formulario">
+                        <input type="text" name="apellidos" class="form-control formulario__input" id="apellidos" placeholder="Ingresa Apellidos">
+                        <i class="fa-solid fa-circle-check check" id="check__apellidos"></i>
+                    </div>
+                    <span class="span__alert" id="span-alert-apellidos">El campo debe tener de 4 a 16 digitos, y solo tener letras, numeros y guión bajo</span>
+                </div>
+                <div class="form-group">
+                    <label for="Correo">Correo</label>
+                    <div class="input-formulario">
+                        <input type="text" name="correo" class="form-control formulario__input" id="correo" placeholder="correo@correo.com">
+                        <i class="fa-solid fa-circle-check check" id="check__correo"></i>
+                    </div>
+                    <span class="span__alert" id="span-alert-correo">El campo solo puede contener letras, numeros, puntos, guion y guion bajo</span>
+                </div>
+                <div class="form-group">
+                    <label for="Telefono">Telefono</label>
+                    <div class="input-formulario">
+                        <input type="text" name="telefono" class="form-control formulario__input" id="telefono" placeholder="987452782">
+                        <i class="fa-solid fa-circle-check check" id="check__telefono"></i>
+                    </div>
+                    <span class="span__alert" id="span-alert-telefono">El campo debe contener 9 números</span>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Mensaje</label>
+                    <textarea class="form-control" id="mensaje" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" id="btn">Submit</button>
+            </form>
+        </div>
+    </main>
+
+
+
+    <style>
+        body {
+            background-color: orange
+        }
+
+        nav {
+            background-color: blue;
+        }
+
+        nav li {
+            margin-right: 20px;
+            color: #fff;
+        }
+
+        main {
+            width: 100vw;
+            height: auto;
+        }
+
+        .img {
+            margin-top: 100px;
+        }
+
+        .contenedor{
+            width:100%;
+            height:auto;
+            padding:20px;
+            margin: 10px auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .check-ok{
+            color: green
+        }
+
+        .check-notok {
+            color: red
+        }
+
+        .check__nombres{
+            display: none
+        }
+
+        form {
+            width: 450px;
+            height: 400px;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-formulario .check{
+            display: none
+        }
+
+        .form-group{
+            height: auto;
+        }
+
+        .span__alert{
+            display:none
+        }
+
+        .contenedor h1{
+            text-align:center
+        }
+
+        
+
+        .input-formulario{
+            width: 450px;
+            height: 35px;
+            display:flex;
+            align-items: center;
+            margin-top: 5px;
+            margin-bottom: 20px
+        }
+        .input-formulario i{
+            position: absolute;
+            right: 460px
+        }
+
+        .formulario__input{
+            border: 3px solid #fff
+        }
+
+        .formulario__input:focus{
+            border: 2px solid #808080
+        }
+    </style>
+</body>
+
+<script src="https://kit.fontawesome.com/a37eea0b5d.js" crossorigin="anonymous"></script>
+
+<script>
+
+    const btn = document.getElementById('btn');
+    const formulario = document.getElementById('formulario');
+    const inputs = document.querySelectorAll('#formulario input')
+    const expresiones = {
+	nombres: /^[a-zA-Z0-9\_\-]{4,16}$/,
+    apellidos: /^[a-zA-Z0-9\_\-]{4,16}$/,
+    correo: /^\w+\W+\w+\.\w/,
+	telefono: /^\d{9}$/
+    }
+
+    const validarVacios = (e)=>{
+        e.preventDefault();
+        const nombres = document.getElementById('nombres');
+        const apellidos = document.getElementById('apellidos');
+        const correo = document.getElementById('correo');
+        const telefono = document.getElementById('telefono');
+        const mensaje = document.getElementById('mensaje');
+
+        if (nombres.value == "" || apellidos.value == "" || correo.value == "" || telefono.value == "" || mensaje.value == "") {
+            swal("Error", "Debes completar todos los campos", "error");
+        } else {
+            swal("Success", "Correo enviado exitosamente", "success");
+            setTimeout(() => { location.reload() },3000);
+        }
+    }
+
+    btn.addEventListener('click', validarVacios);
+
+    const validarFormulario = (e) => {
+        switch (e.target.name) {
+            case 'nombres':
+                validarCampo(expresiones.nombres, e.target, 'nombres');
+                break;
+            case 'apellidos':
+                validarCampo(expresiones.apellidos, e.target, 'apellidos');
+                break;
+            case 'correo':
+                validarCampo(expresiones.correo, e.target, 'correo');
+                break;
+            case 'telefono':
+                validarCampo(expresiones.telefono, e.target, 'telefono');
+                break;
+        }
+    };
+
+
+    const validarCampo = (expresion, input, campo) => {
+        if (expresion.test(input.value)) {
+            document.getElementById(`check__${campo}`).classList.remove('check');
+            document.getElementById(`check__${campo}`).classList.add('check-ok');
+            document.getElementById(`check__${campo}`).classList.remove('check-notok');
+            document.getElementById(`check__${campo}`).classList.add('fa-circle');
+            document.getElementById(`check__${campo}`).classList.remove('fa-circle-xmark');
+            document.getElementById(`span-alert-${campo}`).style.display = 'none';
+
+        } else {
+            document.getElementById(`check__${campo}`).classList.remove('check');
+            document.getElementById(`check__${campo}`).classList.remove('check-ok');
+            document.getElementById(`check__${campo}`).classList.add('check-notok');
+            document.getElementById(`check__${campo}`).classList.remove('fa-circle');
+            document.getElementById(`check__${campo}`).classList.add('fa-circle-xmark');
+            document.getElementById(`span-alert-${campo}`).style.display = 'block';
+        }
+    }
+
+    inputs.forEach(input => {
+        input.addEventListener('keyup', validarFormulario)
+        input.addEventListener('blur', validarFormulario)
+    })
+
+    
+
+    
+
+</script>
+</html>

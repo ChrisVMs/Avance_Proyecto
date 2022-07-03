@@ -1,0 +1,63 @@
+﻿@model List<ProductoModel>
+
+@{
+    Layout = null;
+}
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Registrar</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="https://kit.fontawesome.com/a37eea0b5d.js" crossorigin="anonymous"></script>
+</head>
+
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container">
+            <a class="navbar-brand btn btn-light" asp-area="" asp-controller="Mantenedor" asp-action="Listar">Usuarios</a>
+            <a class="navbar-brand btn btn-light" asp-area="" asp-controller="ApiListar" asp-action="ListarApi">Productos(Proveedor)</a>
+            <a class="navbar-brand btn btn-light" asp-area="" asp-controller="Productos" asp-action="ListarProductos">Productos</a>
+            <a class="navbar-brand btn btn-danger" asp-area="" asp-controller="Home" asp-action="Index"><i class="fa-solid fa-power-off"></i></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+</header>
+
+<div class="card">
+    <div class="card-header">
+        Lista Contacto
+    </div>
+    <div class="card-body">
+
+        <a asp-action="GuardarProductos" asp-controller="Productos" class="btn btn-success">Crear nuevo</a>
+        <hr />
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Marca</th>
+                    <th>Stock</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Nombre</td>
+                        <td>@item.Descripcion</td>
+                        <td>@item.Stock</td>
+                        <td>
+                            <a asp-action="EditarProductos" asp-controller="Productos" class="btn btn-primary btn-sm" asp-route-IdProducto="@item.IdProducto">Editar</a>
+                            <a asp-action="EliminarProductos" asp-controller="Productos" class="btn btn-danger btn-sm" asp-route-IdProducto="@item.IdProducto">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

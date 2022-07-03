@@ -1,0 +1,45 @@
+﻿@model ProductoModel
+
+@{
+    Layout = null;
+}
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Registrar</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container">
+            <a class="navbar-brand btn btn-light" asp-area="" asp-controller="Mantenedor" asp-action="Listar">Usuarios</a>
+            <a class="navbar-brand btn btn-light" asp-area="" asp-controller="Productos" asp-action="ListarProductos">Productos</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+</header>
+
+<div class="card">
+    <div class="card-header">
+        Editar Contacto
+    </div>
+    <div class="card-body">
+        <form asp-action="EliminarProductos" asp-controller="Productos" method="post">
+
+            <input asp-for="IdProducto" type="hidden" class="form-control">
+
+            <div class="alert alert-danger" role="alert">
+                ¿Desea eliminar el registro?
+            </div>
+
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+            <a asp-action="ListarProductos" asp-controller="Productos" class="btn btn-warning">Volver a la Lista</a>
+        </form>
+
+
+    </div>
+</div>

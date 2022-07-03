@@ -1,0 +1,53 @@
+﻿@model ProductoModel
+@{
+    Layout = null;
+}
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Registrar</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container">
+            <a class="navbar-brand btn btn-light" asp-area="" asp-controller="Mantenedor" asp-action="Listar">Usuarios</a>
+            <a class="navbar-brand btn btn-light" asp-area="" asp-controller="Productos" asp-action="ListarProductos">Productos</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+</header>
+
+<div class="card">
+    <div class="card-header">
+        Editar Contacto
+    </div>
+    <div class="card-body">
+        <form asp-action="EditarProductos" asp-controller="Productos" method="post">
+            <input asp-for="IdProducto" type="hidden" class="form-control">
+            <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                <input asp-for="Nombre" type="text" class="form-control">
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Descripcion</label>
+                <input asp-for="Descripcion" type="text" class="form-control">
+                <span asp-validation-for="Descripcion" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Stock</label>
+                <input asp-for="Stock" type="text" class="form-control">
+                <span asp-validation-for="Stock" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a asp-action="ListarProductos" asp-controller="Productos" class="btn btn-warning">Volver a la Lista</a>
+        </form>
+    </div>
+</div>
+
+

@@ -1,0 +1,122 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="https://kit.fontawesome.com/a37eea0b5d.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm d-flex bg-white ">
+        <div class="container-fluid d-flex">
+            <div class="collapse navbar-collapse d-flex justify-content-center">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="Home" asp-action="Index">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="Home" asp-action="QuienesSomos">¿Quienes somos?</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Home" asp-action="Contacto">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Home" asp-action="IniciarSesion">Iniciar Sesion</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="formulario">
+        <form>
+            <div class="form-group">
+                <label for="correo">Email address</label>
+                <input type="email" class="form-control" id="correo" aria-describedby="emailHelp" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+                <label for="pass">Password</label>
+                <div class="registrar">
+                    <input type="password" class="form-control" id="pass" placeholder="Password">
+                    <i class="fa-solid fa-eye"></i>
+                </div>
+            </div>
+            <div class="d-flex justify-content-around mt-4">
+                <button type="submit" class="btn btn-primary mr-5" id="iniciar" asp-controller="Mantenedor" asp-action="Listar">Iniciar Sesion</button>
+                <button class="btn btn-success w-40" asp-controller="Home" asp-action="Registrar">Registrarse</button>
+            </div>
+        </form>
+    </div>
+
+
+
+    <style>
+        body {
+            background-color: orange
+        }
+
+        nav {
+            background-color: blue;
+        }
+
+            nav li {
+                margin-right: 20px;
+                color: #fff;
+            }
+
+        main {
+            width: 100vw;
+            height: 80vh;
+        }
+
+        .formulario {
+            width: 400px;
+            height: 300px;
+            margin: 100px auto;
+        }
+
+        .img {
+            margin-top: 100px;
+        }
+        .form-group{
+
+        }
+        .registrar{
+            width: 100%;
+            height: auto;
+        }
+        .registrar i{
+            position: relative;
+            right: -370px;
+            bottom: 30px;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        const iniciar = document.getElementById('iniciar');
+        const correo = document.getElementById('correo');
+        const pass = document.getElementById('pass');
+
+        const validarForm = (e) => {
+            if (correo.value == '' || pass.value == '') {
+                e.preventDefault();
+                swal("Error", "Debes completar todos los campos", "error");
+                e.preventDefault();
+            } else {
+                swal("Bienvenido!", "Ingresaste exitosamente", "success");
+            }
+        }
+
+        iniciar.addEventListener('click', validarForm);
+    </script>
+</body>
+</html>
+
+
